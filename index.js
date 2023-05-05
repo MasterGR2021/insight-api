@@ -86,7 +86,6 @@ app.post('/login', async (req, res) => {
           if (err) {
             throw err;
           } else {
-            // res.status(200).json(token);
             res
               .cookie('jwt_token', token, {
                 httpOnly: true,
@@ -122,12 +121,14 @@ app.get('/profile', (req, res) => {
 
 app.post('/logout', (req, res) => {
   // res.cookie('jwt_token', '').json('ok');
-  res.cookie('jwt_token', '', {
-    httpOnly: true,
-    secure: true,
-    domain: 'https://insight-api-7biz.onrender.com',
-  })
-  .json('ok');
+  res
+    .cookie('jwt_token', '', {
+      httpOnly: true,
+      secure: true,
+      domain: 'https://insight-api-7biz.onrender.com',
+    })
+    .json('ok');
+});
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   // res.json(req.file);
