@@ -50,12 +50,6 @@ mongoose
     console.log(err);
   });
 
-app.get('/cookie', (req, res) => {
-  res.cookie('Test', false);
-  res.send('Got the cookie?');
-  res.json({ wow: true });
-});
-
 app.post('/register', async (req, res) => {
   const { name, email, password } = req.body;
   const salt = bcrypt.genSaltSync(10);
@@ -93,10 +87,16 @@ app.post('/login', async (req, res) => {
             throw err;
           } else {
             // res.status(200).json(token);
-            res.cookie('jwt_token', token).json({
-              name,
-              id,
-            });
+            res
+              .cookie('jwt_token', token, {
+                httpOnly: true,
+                secure: true,
+                domain: 'https://insight-api-7biz.onrender.com',
+              })
+              .json({
+                name,
+                id,
+              });
           }
         }
       );
