@@ -121,8 +121,13 @@ app.get('/profile', (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
-  res.cookie('jwt_token', '').json('ok');
-});
+  // res.cookie('jwt_token', '').json('ok');
+  res.cookie('jwt_token', '', {
+    httpOnly: true,
+    secure: true,
+    domain: 'https://insight-api-7biz.onrender.com',
+  })
+  .json('ok');
 
 app.post('/post', uploadMiddleware.single('file'), async (req, res) => {
   // res.json(req.file);
