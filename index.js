@@ -18,7 +18,7 @@ const app = express();
 
 // Middlewares
 app.use(
-  cors({ credentials: true, origin: 'https://insight-api-7biz.onrender.com' })
+  cors({ credentials: true, origin: 'https://insight-ducf.onrender.com' })
 );
 app.use(express.json());
 app.use(cookieParser());
