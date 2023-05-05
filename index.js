@@ -90,7 +90,7 @@ app.post('/login', async (req, res) => {
               .cookie('jwt_token', token, {
                 httpOnly: true,
                 secure: true,
-                domain: 'https://insight-api-7biz.onrender.com',
+                domain: '.onrender.com',
               })
               .json({
                 name,
@@ -125,7 +125,7 @@ app.post('/logout', (req, res) => {
     .cookie('jwt_token', '', {
       httpOnly: true,
       secure: true,
-      domain: 'https://insight-api-7biz.onrender.com',
+      domain: '.onrender.com',
     })
     .json('ok');
 });
